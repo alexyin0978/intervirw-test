@@ -1,0 +1,43 @@
+{
+  "id": 0,
+  "Group": [
+    "group",
+    {
+      "id": 0,
+      "Rect": "rect"
+    },
+    {
+      "id": 1,
+      "Group": "group"
+    },
+    {
+      "id": 2,
+      "Group": [
+        "group",
+        {
+          "id": 0,
+          "Rect": "rect"
+        },
+        {
+          "id": 1,
+          "Rect": "rect"
+        },
+        {
+          "id": 2,
+          "Group": "group"
+        },
+        {
+          "id": 3,
+          "Group": [
+            "group",
+            {
+              "id": 0,
+              "Rect": "rect"
+            }
+          ]
+        }
+      ]
+    }
+
+  ]
+}
