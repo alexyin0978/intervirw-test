@@ -3,13 +3,15 @@ import './App.css';
 import jsonObj from './nested.json';
 
 
+const checkType = (obj) => Object.prototype.toString.call(obj).slice(8,-1).toLowerCase();
+
 const Iterate = ({obj}) => {
 
   if(obj){
 
     const [id,type] = Object.keys(obj);
   
-    if(typeof obj[type] === 'object'){
+    if(checkType(obj[type]) === 'array'){
   
       const arr = obj[type];
   
@@ -52,16 +54,26 @@ function App() {
 
 export default App;
 
-// const Iterate = (obj) => {
-//   Object.keys(obj).forEach(key => {
+/*
+參考資料：
 
-//   console.log(`key: ${key}, value: ${obj[key]}`)
+1.check levels of obj within obj
+const Iterate = (obj) => {
+  Object.keys(obj).forEach(key => {
 
-//   if (typeof obj[key] === 'object') {
-//           Iterate(obj[key])
-//       }
-//   })
-// }
+  console.log(`key: ${key}, value: ${obj[key]}`)
+
+  if (typeof obj[key] === 'object') {
+          Iterate(obj[key])
+      }
+  })
+};
+
+2.typeOf替代方案
+  a.what is the best way to check variable type in javascript
+  b.你為什麼不問問神奇 JavaScript 呢？系列 第 6 篇
+
+*/
 
 
 
