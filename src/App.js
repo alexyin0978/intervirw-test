@@ -2,51 +2,75 @@ import './App.css';
 
 import jsonObj from './nested.json';
 
-
+//1.check type
 const checkType = (obj) => Object.prototype.toString.call(obj).slice(8,-1).toLowerCase();
 
-const Iterate = ({obj}) => {
+//2.Group Component
+const Group = ({obj}) => {
 
+  //a.確保obj存在
   if(obj){
 
     const [id,type] = Object.keys(obj);
   
+    //b.若Group內有其他物件
     if(checkType(obj[type]) === 'array'){
   
-      const arr = obj[type];
+      const arrOfObj = obj[type];
   
       return(
-        <div className={arr[0]} key={obj[id]}>
-          {arr[0]}
+        <div className={arrOfObj[0]} key={obj[id]}>
+          {arrOfObj[0]}
           <>
             {
-             arr.filter((subObj,idx) => idx > 0)
+             arrOfObj.filter((subObj,idx) => idx > 0)
              .map(subObj => {
-              const [id] = Object.keys(subObj);
-               return (
-                <Iterate obj={subObj} key={subObj[id]}/>
-               )
+
+              const [id,type] = Object.keys(subObj);
+
+              //#.若type為rect，則render rect
+              if(subObj[type] === 'rect'){
+                return <Rect obj={subObj} key={subObj[id]}/>
+              //#.若type為Group，則render Group
+              //這裡為recursion call，會不斷向下檢查直到Group內沒有別的物件
+              }else{
+                return <Group obj={subObj} key={subObj[id]}/>
+              }
              })
             }
           </>
         </div>
       )
+    //c.若Group裡面沒有東西
     }else{
       return(
         <div className={obj[type]} key={obj[id]}>
           {obj[type]}
         </div>
-      )
+      );
     }
   }
 };
 
+//3.Rect Component
+const Rect = ({obj}) => {
+
+  const [id,type] = Object.keys(obj);
+
+  return(
+    <div className={obj[type]} key={obj[id]}>
+      {obj[type]}
+    </div>
+  );
+};
+
+//4.App，內部放Group(root為Group)
 function App() {
   
   return (
     <>
       {
-        jsonObj ? <Iterate obj={jsonObj} /> : null
+        jsonObj ? <Group obj={jsonObj} /> : null
       }
     </>
   );

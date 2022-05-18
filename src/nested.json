@@ -1,43 +1,38 @@
 {
   "id": 0,
-  "Group": [
+  "type": [
     "group",
     {
       "id": 0,
-      "Rect": "rect"
+      "type": "rect"
     },
     {
       "id": 1,
-      "Group": "group"
+      "type": "group"
     },
     {
       "id": 2,
-      "Group": [
+      "type": [
         "group",
         {
           "id": 0,
-          "Rect": "rect"
+          "type": "rect"
         },
         {
           "id": 1,
-          "Rect": "rect"
-        },
-        {
-          "id": 2,
-          "Group": "group"
-        },
-        {
-          "id": 3,
-          "Group": [
+          "type": [
             "group",
             {
               "id": 0,
-              "Rect": "rect"
+              "type": "rect"
             }
           ]
+        },
+        {
+          "id": 2,
+          "type": "group"
         }
       ]
     }
-
   ]
 }
